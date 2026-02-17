@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "My First Blog Post",
+    "content": "This is the content of my very first dynamic blog post!",
+    "author": "Admin"
+  },
+  {
+    "id": 2,
+    "title": "Learning Express.js",
+    "content": "Express makes it so easy to build web applications with Node.",
+    "author": "Developer"
+  }
+]

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Blog</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact</a> | <a href="/blog">Blog</a>
+    </nav>
+
+    <h1>Dynamic Blog Posts</h1>
+    <div id="blog-container">Loading posts...</div>
+
+    <script>
+        // Use Fetch to get data from your own server's API route
+        fetch('/api/posts')
+            .then(response => {
+                if (!response.ok) throw new Error("Could not fetch posts");
+                return response.json();
+            })
+            .then(posts => {
+                const container = document.getElementById('blog-container');
+                container.innerHTML = ""; // Clear the loading message
+
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post-card';
+                    postElement.innerHTML = `
+                        <h2>${post.title}</h2>
+                        <p>${post.content}</p>
+                        <p><strong>Author:</strong> ${post.author}</p>
+                        <hr>
+                    `;
+                    container.appendChild(postElement);
+                });
+            })
+            .catch(error => {
+                document.getElementById('blog-container').innerHTML = "Error loading blog posts.";
+                console.error(error);
+            });
+    </script>
+</body>
+</html>
