@@ -25,6 +25,7 @@ app.get('/api/posts', (req, res) => {
         const postsData = fs.readFileSync(filePath, 'utf8');
         res.json(JSON.parse(postsData));
     } catch (err) {
+        // This part ensures the server tells the browser what went wrong
         console.error("Error reading posts file:", err);
         res.status(500).json({ error: "Failed to load blog posts" });
     }
